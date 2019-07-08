@@ -1,6 +1,5 @@
 import cv2 as cv
 
-
 cap = cv.VideoCapture(0)
 
 print(cap.get(cv.CAP_PROP_FRAME_WIDTH))
@@ -13,14 +12,13 @@ print(cap.get(cv.CAP_PROP_FRAME_WIDTH))
 print(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
 
 while cap.isOpened():
-  ret, frame = cap.read()
-  if ret == True:
-    cv.imshow('frame', frame)
-
-    if cv.waitKey(50) & 0xFF == ord('q'):
-      break
-  else:
-    break
+    ret, frame = cap.read()
+    if ret:
+        cv.imshow('frame', frame)
+        if cv.waitKey(50) & 0xFF == ord('q'):
+            break
+    else:
+        break
 
 cap.release()
 cv.destroyAllWindows()
