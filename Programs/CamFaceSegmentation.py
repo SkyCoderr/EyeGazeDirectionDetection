@@ -3,7 +3,9 @@ import cv2
 
 cap = cv2.VideoCapture(0)
 faceCascate = cv2.CascadeClassifier('/usr/local/lib/python3.7/site-packages/cv2/data/haarcascade_frontalface_default.xml')
+# faceCascate = cv2.CascadeClassifier('/Users/jayon/Desktop/face.xml')
 index = 0
+k = -1
 
 
 # Detect the face in an image and segment it
@@ -13,30 +15,35 @@ def getFace(frame):
         face = frame[y:y + h, x:x + w]
         return face
 
+
 # Store the face image to a certain path with the index specified
 def record(face, index):
     path = 'ImageData/Left/{}.jpg'.format(index)
     cv2.imwrite(path, face)
 
 
-# If the key pressed is s, the face in the frame is saved, if it's q, the camera closes and the exits the system
-while cap.isOpened():
+# Press s then it starts recording, then press any key other than q to stop recording. Press q to stop the program.
+while k != ord('q'):
     ret, frame = cap.read()
-    filename = 0
     if ret:
+        # First flip the image horizontally
+        frame = cv2.flip(frame, 1)
         cv2.imshow('frame', frame)
-        k = cv2.waitKey(1)
+        m = cv2.waitKey(50)
+        if m != -1:
+            k = m
         if k == ord('s'):
             face = getFace(frame)
+            # If for one frame in which the face isn't recognized
             if face is None:
                 continue
+            # If a face is recognized
             else:
                 face = cv2.resize(getFace(frame), (300, 300))
-                face = cv2.flip(face, 1)
             record(face, index)
             index += 1
-        elif k == ord('q'):
-            break
+        else:
+            continue
     else:
         break
 
