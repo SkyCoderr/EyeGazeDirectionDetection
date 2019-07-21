@@ -12,6 +12,10 @@ def scaleFace(frame):
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 255, 255), 1)
 
 
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 100)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 100)
+
+
 while cap.isOpened():
     ret, frame = cap.read()
     if ret:

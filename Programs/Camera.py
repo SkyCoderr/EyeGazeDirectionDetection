@@ -8,8 +8,8 @@ print(cap.get(cv.CAP_PROP_FRAME_WIDTH))
 print(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
 
 
-cap.set(cv.CAP_PROP_FRAME_WIDTH, 5000)
-cap.set(cv.CAP_PROP_FRAME_HEIGHT, 5000)
+cap.set(cv.CAP_PROP_FRAME_WIDTH, 500)
+cap.set(cv.CAP_PROP_FRAME_HEIGHT, 500)
 
 
 print(cap.get(cv.CAP_PROP_FRAME_WIDTH))

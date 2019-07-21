@@ -18,7 +18,7 @@ def getFace(frame):
 
 # Store the face image to a certain path with the index specified
 def record(face, index):
-    path = 'ImageData/Left/{}.jpg'.format(index)
+    path = 'ImageData/Origin/{}.jpg'.format(index)
     cv2.imwrite(path, face)
 
 
